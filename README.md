@@ -45,7 +45,7 @@ k port-forward pod/redis-deployment-{id} -n $NS 6379:6379
 ```
 ![img_1.png](redis-app/img_1.png)
 
-
+ 
 
 ## 5. Create Dockerfile and build it
 Assume x86-64 architecture on Linux (ELF) 
