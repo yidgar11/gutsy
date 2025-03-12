@@ -2,6 +2,7 @@
 ## Aliases and Env
 ```sh
 alias k="kubectl"
+alias tf="terraform"
 export NS="gutsy"
 k create ns $NS
 ````
@@ -12,11 +13,30 @@ k create ns $NS
 ```
 update the password in the redis-secret.yaml
 
-# Description
-TBD - ADD image here
+# To deploy project using terraform 
 
-# Steps
-## 1. build the go app
+```shell
+tf init 
+tf valudate
+# check that the terraform plan command success  
+tf plan 
+# run terraform apply  
+tf apply [optiona --auto-approve] 
+
+(to clear , use terrafrom destroy command ) 
+```
+expose the server servcie 
+```shell
+k port-forward service/gutsy-server-container-service -n $NS  9010:9090
+```
+and chck API from browser 
+![img_2.png](img_2.png)
+
+
+
+
+# Steps for creatioin of the project 
+## 1. Build the go app
 
 ```shell
 # For MAC, check locally
@@ -50,19 +70,19 @@ k get pods -n $NS
 # 3. expose the pod
 k port-forward pod/redis-deployment-{id} -n $NS 6379:6379
 
-# 4. runh the server app
+# 4. run the server app
 ./server localhost:6379
 ```
 ![img_1.png](redis-app/img_1.png)
 
 
-## 5. Create Dockerfile and build it
+## 5. Create Dockerfile for the redis-app and build it
 Assume x86-64 architecture on Linux (ELF)
 ```shell
 docker build -t yidgar11/server:1.0
 ```
 
-## 6. create server-deployment and use the yidgar11/server:1.0 image
+## 6. Create server-deployment and use the yidgar11/server:1.0 image
 ## 7. Deploy the server-deployment.yaml
 ```shell
 k deploy -f server-deployment.yaml
@@ -82,8 +102,9 @@ k logs pod/redis-deployment-bcbf5f55d-fsgdd -n $NS
 ```
 ![img_1.png](img_1.png)
 
-## 9. check API
+## 9. Check API
 ![img.png](img.png)
+
 
 
 
