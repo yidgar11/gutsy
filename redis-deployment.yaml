@@ -9,7 +9,7 @@ data:
     port 6379
     protected-mode no
     dir /data
-    dbfilename dump.rdb
+    dbfilename data.rdb
     save 900 1
     save 300 10
     save 60 10000
@@ -36,6 +36,7 @@ spec:
       containers:
       - name: redis-container
         image: redis:7.2-alpine
+        command: ["redis-server", "/redis-master/redis.conf"]
         ports:
           - containerPort: 6379
         resources:

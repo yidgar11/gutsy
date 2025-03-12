@@ -59,9 +59,13 @@ docker build -t yidgar11/server:1.0
 k deploy -f server-deployment.yaml
 ```
 
-verify the service is up nd check logs
+## 8. verify the service is up nd check logs
 ```shell
 k get pods -n $NS 
 k logs pod/server-deployment-{id} -n $NS
 ```
 ![img.png](redis-app/img.png)
+
+
+## 9. check API
+![img.png](img.png)

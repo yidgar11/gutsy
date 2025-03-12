@@ -9,3 +9,5 @@ spec:
   resources:
     requests:
       storage: 2Gi
+  storageClassName: standard
+  volumeName: redis-pv # Bind explicitly to redis-pv
